@@ -1,7 +1,6 @@
 # Bouncy Koen - PowerShell HTTP Server & Launcher
 $port = 8089
-$path = $PSScriptRoot
-if (-not $path) { $path = (Get-Location).Path }
+$path = Join-Path $PSScriptRoot 'docs'
 
 $listener = New-Object System.Net.HttpListener
 $prefix = "http://localhost:$port/"

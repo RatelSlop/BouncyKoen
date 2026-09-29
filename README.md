@@ -20,15 +20,26 @@ Een 3D HTML5 Crossy Road-stijl game gebouwd met Three.js, met Koen in de hoofdro
 
 ---
 
-## 🥔 Pterodactyl / Aardappel Hosting
+## Publiceren
 
-Deze repo is 100% kant-en-klaar geoptimaliseerd voor Pterodactyl met de **Node.js generic egg**:
+De game is een statische website in `docs/`: `index.html`, `js/` en `assets/`. Er is geen build-stap of backend nodig. De paden in `index.html` zijn relatief en werken ook op een GitHub Pages-projectpad (`/bouncykoen/`).
 
-- **0 Externe Packages**: Gebruikt puur Node's native `http`, `fs` en `path` modules.
-- **Geen build-stap**: Geen `npm install` wachttijd, geen RAM-spikes.
-- **~25 MB RAM**: Start in minder dan 50ms en draait soepel op zelfs de kleinste aardappel-servers.
-- **Automatische Poort**: Luistert automatisch naar `SERVER_PORT` / `PORT` op `0.0.0.0`.
+### GitHub Pages (aanbevolen)
 
-### Lokale Start
-- **Windows**: Dubbelklik op `start.bat`.
-- **Node.js**: `node index.js`
+1. Push de bestanden naar de `main`-branch.
+2. De bestaande Pages-publicatie vanaf `main` **/(root)** blijft werken: `index.html` verwijst automatisch door naar `docs/`. Je kunt in **Settings → Pages → Build and deployment** ook branch **main**, folder **/docs** instellen om de game direct op de homepage te tonen.
+3. Open de Pages-URL na publicatie. `CNAME` en `docs/CNAME` configureren de bestaande eigen domeinnaam `bouncykoen.schoolnaam.nl` voor beide Pages-bronnen; zorg dat de DNS voor dat domein naar GitHub Pages wijst. Verwijder beide CNAME-bestanden als je geen eigen domein wilt gebruiken.
+
+### Cloudflare Workers (statische assets)
+
+`wrangler.jsonc` publiceert alleen `docs/` als statische assets zonder Worker-script. Server- en projectbestanden worden niet mee geüpload.
+
+1. Log in met `npx wrangler login` (Node.js vereist voor de CLI).
+2. Publiceer met `npx wrangler deploy` vanuit de projectmap.
+
+Gebruik voor een eigen domein op Workers de domeininstellingen in Cloudflare; `CNAME` is alleen voor GitHub Pages.
+
+### Lokaal
+
+- Windows: dubbelklik op `start.bat`.
+- Node.js: `node index.js` (of `npm start`), open `http://localhost:8080`.

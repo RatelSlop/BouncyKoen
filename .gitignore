@@ -1,7 +1,6 @@
-# Dependencies & Build
+# Dependencies
 node_modules/
-target/
-Cargo.lock
+.wrangler/
 
 # Logs & temp
 *.log
