@@ -1,7 +1,7 @@
 {
   "name": "bouncy-koen",
   "version": "1.0.0",
-  "description": "Bouncy Koen - Crossy Road Style 3D Web Game",
+  "description": "Bouncy Koen: a Dutch-themed 3D browser game hosted on GitHub Pages or Cloudflare Workers",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

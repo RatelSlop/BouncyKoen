@@ -1,6 +1,6 @@
 # 🐸 Bouncy Koen - Crossy Road Edition
 
-Een 3D HTML5 Crossy Road-stijl game gebouwd met Three.js, met Koen in de hoofdrol en een oer-Hollandse twist!
+Een 3D Crossy Road-stijl browserspel met Koen in de hoofdrol, gebouwd met Three.js en een oer-Hollandse twist. [Speel Bouncy Koen](https://bouncykoen.schoolnaam.nl/).
 
 
 ---
@@ -22,12 +22,12 @@ Een 3D HTML5 Crossy Road-stijl game gebouwd met Three.js, met Koen in de hoofdro
 
 ## Publiceren
 
-De game is een statische website in `docs/`: `index.html`, `js/` en `assets/`. Er is geen build-stap of backend nodig. De paden in `index.html` zijn relatief en werken ook op een GitHub Pages-projectpad (`/bouncykoen/`).
+De speelbare website bestaat uit `docs/index.html`, `docs/js/` en `docs/assets/`. `docs/` scheidt de publieke bestanden van de lokale server en configuratie; het is geen onderdeel van de uiteindelijke URL. Er is geen build-stap of backend nodig.
 
 ### GitHub Pages (aanbevolen)
 
 1. Kies in **Settings → Pages → Build and deployment** de bron **GitHub Actions**.
-2. Push naar `main`: `.github/workflows/pages.yml` publiceert uitsluitend de inhoud van `docs/` op de site-root, zonder `/docs` in de URL. Er is geen build nodig.
+2. Push naar `main`: `.github/workflows/pages.yml` publiceert de inhoud van `docs/` als de site-root. De game staat dan direct op `/`, zonder `/docs` in de URL.
 3. `docs/CNAME` configureert de bestaande eigen domeinnaam `bouncykoen.schoolnaam.nl`; zorg dat de DNS naar GitHub Pages wijst. Verwijder `docs/CNAME` als je geen eigen domein wilt gebruiken.
 
 ### Cloudflare Workers (statische assets)
