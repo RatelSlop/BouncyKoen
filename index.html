@@ -97,6 +97,36 @@
       font-size: 18px;
     }
 
+    .audio-toggle-btn {
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    .audio-toggle-btn:hover {
+      background: rgba(0, 0, 0, 0.85);
+      transform: scale(1.05);
+    }
+
+    .audio-toggle-btn:active {
+      transform: scale(0.92);
+    }
+
+    .audio-toggle-btn.muted {
+      opacity: 0.6;
+    }
+
     /* Seagull Warning Meter */
     .danger-indicator {
       position: absolute;
@@ -308,10 +338,14 @@
         ⚠️ PAS OP! MEEUW KOMT ERAAN!
       </div>
 
-      <div class="high-score-badge">
-        <span>🏆</span> Top: <strong id="best-score-display" style="margin-left: 4px;">0</strong>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div class="high-score-badge">
+          <span>🏆</span> Top: <strong id="best-score-display" style="margin-left: 4px;">0</strong>
+        </div>
+        <button id="btn-audio" class="audio-toggle-btn" title="Muziek aan/uit">🔊</button>
       </div>
     </div>
+    <audio id="bgm" src="Bouncy_Koen.mp3" loop preload="auto"></audio>
 
     <div class="controls-hint" id="hint-msg">
       Gebruik ⬆️ ⬇️ ⬅️ ➡️ of WASD / Swipe om te springen
@@ -405,6 +439,48 @@
     const hintMsg = document.getElementById('hint-msg');
 
     bestScoreDisplay.textContent = bestScore;
+
+    // --- BACKGROUND MUSIC ---
+    const bgm = document.getElementById('bgm');
+    const btnAudio = document.getElementById('btn-audio');
+    let isMuted = localStorage.getItem('bouncy_koen_muted') === 'true';
+    let musicStarted = false;
+
+    bgm.volume = 0.5;
+
+    function updateAudioUI() {
+      if (isMuted) {
+        btnAudio.textContent = '🔇';
+        btnAudio.classList.add('muted');
+        bgm.pause();
+      } else {
+        btnAudio.textContent = '🔊';
+        btnAudio.classList.remove('muted');
+        if (musicStarted) {
+          bgm.play().catch(() => {});
+        }
+      }
+    }
+
+    function tryStartMusic() {
+      if (musicStarted) return;
+      musicStarted = true;
+      if (!isMuted) {
+        bgm.play().catch(() => {
+          musicStarted = false;
+        });
+      }
+    }
+
+    btnAudio.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isMuted = !isMuted;
+      localStorage.setItem('bouncy_koen_muted', isMuted);
+      musicStarted = true;
+      updateAudioUI();
+    });
+
+    updateAudioUI();
 
     // --- PROCEDURAL TEXTURES (Koen's Confetti Shirt & Face) ---
     function createShirtTexture() {
@@ -1583,6 +1659,14 @@
 
     // --- CONTROLS SETUP ---
     function setupControls() {
+      // Auto-start background music on first interaction
+      const triggerAudioInteraction = () => {
+        tryStartMusic();
+      };
+      window.addEventListener('keydown', triggerAudioInteraction);
+      window.addEventListener('pointerdown', triggerAudioInteraction);
+      window.addEventListener('touchstart', triggerAudioInteraction);
+
       // Keyboard
       window.addEventListener('keydown', (e) => {
         if (modalOverlay.style.display === 'flex') {

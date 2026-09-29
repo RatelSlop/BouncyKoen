@@ -38,6 +38,9 @@ $mimeTypes = @{
     ".gif"  = "image/gif"
     ".svg"  = "image/svg+xml"
     ".ico"  = "image/x-icon"
+    ".mp3"  = "audio/mpeg"
+    ".wav"  = "audio/wav"
+    ".ogg"  = "audio/ogg"
 }
 
 try {
