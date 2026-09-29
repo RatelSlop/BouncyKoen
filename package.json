@@ -1,0 +1,10 @@
+{
+  "name": "bouncy-koen",
+  "version": "1.0.0",
+  "description": "Bouncy Koen - Crossy Road Style 3D Web Game",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {}
+}

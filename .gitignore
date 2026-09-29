@@ -1,0 +1,14 @@
+# Dependencies & Build
+node_modules/
+target/
+Cargo.lock
+
+# Logs & temp
+*.log
+npm-debug.log*
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
