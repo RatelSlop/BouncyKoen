@@ -2,7 +2,6 @@
 
 Een 3D HTML5 Crossy Road-stijl game gebouwd met Three.js, met Koen in de hoofdrol en een oer-Hollandse twist!
 
-![Bouncy Koen](assets/koen.jpg)
 
 ---
 
