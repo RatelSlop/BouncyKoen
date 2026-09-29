@@ -26,9 +26,9 @@ De game is een statische website in `docs/`: `index.html`, `js/` en `assets/`. E
 
 ### GitHub Pages (aanbevolen)
 
-1. Push de bestanden naar de `main`-branch.
-2. De bestaande Pages-publicatie vanaf `main` **/(root)** blijft werken: `index.html` verwijst automatisch door naar `docs/`. Je kunt in **Settings → Pages → Build and deployment** ook branch **main**, folder **/docs** instellen om de game direct op de homepage te tonen.
-3. Open de Pages-URL na publicatie. `CNAME` en `docs/CNAME` configureren de bestaande eigen domeinnaam `bouncykoen.schoolnaam.nl` voor beide Pages-bronnen; zorg dat de DNS voor dat domein naar GitHub Pages wijst. Verwijder beide CNAME-bestanden als je geen eigen domein wilt gebruiken.
+1. Kies in **Settings → Pages → Build and deployment** de bron **GitHub Actions**.
+2. Push naar `main`: `.github/workflows/pages.yml` publiceert uitsluitend de inhoud van `docs/` op de site-root, zonder `/docs` in de URL. Er is geen build nodig.
+3. `docs/CNAME` configureert de bestaande eigen domeinnaam `bouncykoen.schoolnaam.nl`; zorg dat de DNS naar GitHub Pages wijst. Verwijder `docs/CNAME` als je geen eigen domein wilt gebruiken.
 
 ### Cloudflare Workers (statische assets)
 
@@ -37,7 +37,7 @@ De game is een statische website in `docs/`: `index.html`, `js/` en `assets/`. E
 1. Log in met `npx wrangler login` (Node.js vereist voor de CLI).
 2. Publiceer met `npx wrangler deploy` vanuit de projectmap.
 
-Gebruik voor een eigen domein op Workers de domeininstellingen in Cloudflare; `CNAME` is alleen voor GitHub Pages.
+Gebruik voor een eigen domein op Workers de domeininstellingen in Cloudflare; `docs/CNAME` is alleen voor GitHub Pages.
 
 ### Lokaal
 
