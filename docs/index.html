@@ -1377,8 +1377,8 @@
       // Face direction
       if (dz > 0) targetAngle = 0;             // North / Forward
       else if (dz < 0) targetAngle = Math.PI; // South / Backward
-      else if (dx > 0) targetAngle = -Math.PI / 2; // Right
-      else if (dx < 0) targetAngle = Math.PI / 2;  // Left
+      else if (dx > 0) targetAngle = Math.PI / 2;  // Right
+      else if (dx < 0) targetAngle = -Math.PI / 2; // Left
 
       // Update score
       if (currentZ > maxZ) {
